@@ -4,16 +4,17 @@ using movies_api.Models;
 namespace movies_api.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("/movies")]
 public class MovieController : ControllerBase
 {
     private static List<Movie> movies = new List<Movie>();
     private static int id = 1;
 
     [HttpPost]
-    public void AddMovie([FromBody] Movie movie) {
+    public IActionResult AddMovie([FromBody] Movie movie) {
         movie.Id = id++;
         movies.Add(movie);
+        return CreatedAtAction(nameof(GetMovieById), new {id = movie.Id}, movie); // http status 201 (created)
     }
 
     [HttpGet]
