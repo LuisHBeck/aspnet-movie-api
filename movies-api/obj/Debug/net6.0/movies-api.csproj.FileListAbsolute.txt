@@ -30,3 +30,4 @@ C:\Users\47238341840\Documents\aspnet\movies-api\movies-api\obj\Debug\net6.0\ref
 C:\Users\47238341840\Documents\aspnet\movies-api\movies-api\obj\Debug\net6.0\movies-api.pdb
 C:\Users\47238341840\Documents\aspnet\movies-api\movies-api\obj\Debug\net6.0\movies-api.genruntimeconfig.cache
 C:\Users\47238341840\Documents\aspnet\movies-api\movies-api\obj\Debug\net6.0\ref\movies-api.dll
+C:\Users\47238341840\Documents\aspnet\movies-api\movies-api\obj\Debug\net6.0\movies-api.sourcelink.json
