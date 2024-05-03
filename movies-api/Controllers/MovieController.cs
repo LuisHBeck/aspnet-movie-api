@@ -39,6 +39,7 @@ public class MovieController : ControllerBase
     {
         Movie? movie = _context.Movies.FirstOrDefault(movie => movie.Id == id);
         if(movie == null) return NotFound(); // http status 404 (not found)
-        return Ok(movie); // http status 200 (ok with body)
+        DetailingMovieDto movieDetails = _mapper.Map<DetailingMovieDto>(movie); // return dto
+        return Ok(movieDetails); // http status 200 (ok with body)
     }
 }
