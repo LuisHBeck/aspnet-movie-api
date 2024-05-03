@@ -1,4 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using movies_api.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// set db connection
+builder.Services.AddDbContext<MovieContext>(opts => 
+    opts.UseNpgsql(builder.Configuration.GetConnectionString("MovieConnection")
+    ));
 
 // Add services to the container.
 
