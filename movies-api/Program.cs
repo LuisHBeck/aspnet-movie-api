@@ -8,6 +8,9 @@ builder.Services.AddDbContext<MovieContext>(opts =>
     opts.UseNpgsql(builder.Configuration.GetConnectionString("MovieConnection")
     ));
 
+// set automapper
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 // Add services to the container.
 
 builder.Services.AddControllers();

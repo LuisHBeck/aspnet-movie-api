@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using movies_api.Data;
+using movies_api.Data.Dtos;
 using movies_api.Models;
 
 namespace movies_api.Controllers;
@@ -10,14 +12,18 @@ public class MovieController : ControllerBase
 {
 
     private MovieContext _context;
+    private IMapper _mapper;
 
-    public MovieController(MovieContext context)
+    // dependencies injection
+    public MovieController(MovieContext context, IMapper mapper)
     {
         _context = context;
+        _mapper = mapper;
     }
 
     [HttpPost]
-    public IActionResult AddMovie([FromBody] Movie movie) {
+    public IActionResult AddMovie([FromBody] CreateMovieDto movieDto) {
+        Movie movie = _mapper.Map<Movie>(movieDto);
         _context.Movies.Add(movie);
         _context.SaveChanges();
         return CreatedAtAction(nameof(GetMovieById), new {id = movie.Id}, movie); // http status 201 (created)
