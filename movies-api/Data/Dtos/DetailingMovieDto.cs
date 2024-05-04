@@ -8,5 +8,5 @@ public class DetailingMovieDto
 
     public string Gender { get; set;}
 
-    public int GenderId { get; set;}
+    public int Duration { get; set;}
 }
