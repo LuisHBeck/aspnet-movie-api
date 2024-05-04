@@ -9,4 +9,6 @@ public class DetailingMovieDto
     public string Gender { get; set;}
 
     public int Duration { get; set;}
+
+    public DateTime requestTime { get; set; } = DateTime.Now;
 }
