@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace movies_api.Data.Dtos;
+namespace movies_api.Data.Dtos.Movie;
 
 public class CreateMovieDto
 {

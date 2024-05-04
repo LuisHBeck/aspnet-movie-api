@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using movies_api.Data;
-using movies_api.Data.Dtos;
+using movies_api.Data.Dtos.Movie;
 using movies_api.Models;
 
 namespace movies_api.Controllers;
