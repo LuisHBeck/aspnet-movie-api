@@ -15,6 +15,9 @@ public class CinemaProfile : Profile
         CreateMap<Cinema, DetailingCinemaDto>()
             .ForMember(cinemaDto => cinemaDto.Address,
                 opt => opt.MapFrom(cinema => cinema.Address)
+            )
+            .ForMember(cinemaDto => cinemaDto.Sessions,
+                opt => opt.MapFrom(cinema => cinema.Sessions)
             );
     }
 }

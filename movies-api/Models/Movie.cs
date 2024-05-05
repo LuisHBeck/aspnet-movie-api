@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using movies_api.Data.Dtos;
 
 namespace movies_api.Models;
 
@@ -19,4 +18,6 @@ public class Movie
     [Required]
     [Range(45,600)]
     public int Duration { get; set; }
+
+    public virtual ICollection<Session> Sessions { get; set; } // set n:1 relationship
 }

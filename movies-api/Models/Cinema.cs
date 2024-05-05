@@ -15,4 +15,6 @@ public class Cinema
     [Required]
     public int AddressId { get; set; }
     public virtual Address Address { get; set; } // set 1:1 relationship
+
+    public virtual ICollection<Session> Sessions { get; set; } // set n:1 relationship
 }

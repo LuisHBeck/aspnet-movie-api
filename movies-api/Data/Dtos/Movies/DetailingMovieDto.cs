@@ -1,3 +1,5 @@
+using movies_api.Data.Dtos.Session;
+
 namespace movies_api.Data.Dtos.Movie;
 
 public class DetailingMovieDto
@@ -11,4 +13,6 @@ public class DetailingMovieDto
     public int Duration { get; set;}
 
     public DateTime requestTime { get; set; } = DateTime.Now;
+
+    public ICollection<DetailingSessionDto> Sessions { get; set; }
 }

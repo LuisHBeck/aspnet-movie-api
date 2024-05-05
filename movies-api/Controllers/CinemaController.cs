@@ -36,9 +36,10 @@ public class CinemaController : ControllerBase
     {
         List<DetailingCinemaDto> cinemasList = _mapper.Map<List<DetailingCinemaDto>>(
             _context.Cinemas
-                .Include(cinema => cinema.Address)
+                // .Include(cinema => cinema.Address)
                 .Skip(skip)
                 .Take(take)
+                .ToList()
         );
         return cinemasList;
     }
