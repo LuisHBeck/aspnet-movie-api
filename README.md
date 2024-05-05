@@ -9,6 +9,11 @@ Create migrations
 ```psw
 dotnet ef migrations add <MigrationName> 
 ```
+Remove the last migrations
+```psw
+dotnet ef migrations remove 
+```
+
 Apply migrations
 
 ```psw
