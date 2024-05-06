@@ -30,6 +30,13 @@ public class MovieContext : DbContext
             .HasOne(session => session.Movie)
             .WithMany(movie => movie.Sessions)
             .HasForeignKey(session => session.MovieId);
+
+
+        // change deletion mode for Address entity preventing the Cascade type
+        builder.Entity<Address>()
+            .HasOne(address => address.Cinema)
+            .WithOne(cinema => cinema.Address)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 
     public DbSet<Movie> Movies { get; set;}
