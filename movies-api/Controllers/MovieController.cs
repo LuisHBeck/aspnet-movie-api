@@ -31,8 +31,25 @@ public class MovieController : ControllerBase
     }
 
     [HttpGet]
-    public IEnumerable<DetailingMovieDto> GetMovies([FromQuery] int skip = 0, [FromQuery] int take = 10) {  
-        return _mapper.Map<List<DetailingMovieDto>>(_context.Movies.Skip(skip).Take(take).ToList()); 
+    public IEnumerable<DetailingMovieDto> GetMovies(
+        [FromQuery] string? cinemaName = null,
+        [FromQuery] int skip = 0, [FromQuery] int take = 10
+    ) 
+    {  
+        if(cinemaName == null)
+        {
+            return _mapper.Map<List<DetailingMovieDto>>(
+                _context.Movies.Skip(skip).Take(take).ToList()
+            ); 
+        }
+        // LINQ db consults
+        return _mapper.Map<List<DetailingMovieDto>>(
+            _context.Movies
+                .Skip(skip).Take(take)
+                .Where(movie => movie.Sessions.Any(
+                    session => session.Cinema.Name == cinemaName
+                )).ToList()
+        ); 
     }
 
     [HttpGet("{id}")]

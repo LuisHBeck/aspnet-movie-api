@@ -32,16 +32,24 @@ public class CinemaController : ControllerBase
     }
 
     [HttpGet]
-    public IEnumerable<DetailingCinemaDto> GetMovies([FromQuery] int skip = 0, [FromQuery] int take = 10)
+    public IEnumerable<DetailingCinemaDto> GetMovies(
+        // [FromQuery] int? addressId = null, 
+        [FromQuery] int skip = 0, [FromQuery] int take = 10
+    )
     {
-        List<DetailingCinemaDto> cinemasList = _mapper.Map<List<DetailingCinemaDto>>(
-            _context.Cinemas
-                // .Include(cinema => cinema.Address)
-                .Skip(skip)
-                .Take(take)
-                .ToList()
-        );
-        return cinemasList;
+        // if(addressId == null)
+        {
+            List<DetailingCinemaDto> cinemasList = _mapper.Map<List<DetailingCinemaDto>>(
+                _context.Cinemas.Skip(skip).Take(take).ToList()
+            );
+            return cinemasList;
+        }
+        // need to review some errors with postgresql raw sql
+        // return _mapper.Map<List<DetailingCinemaDto>>(
+        //     _context.Cinemas.FromSqlRaw(
+        //         $"SELECT Id, Name, AddressId FROM cinemas WHERE Cinemas.AddressId = {addressId}"
+        //     ).ToList()
+        // );
     }
 
     [HttpGet("{id}")]
