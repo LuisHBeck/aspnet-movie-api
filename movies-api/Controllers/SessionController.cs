@@ -25,7 +25,10 @@ public class SessionController : ControllerBase
         Session session = _mapper.Map<Session>(sessionDto);
         _context.Add(session);
         _context.SaveChanges();
-        return CreatedAtAction(nameof(GetSessionById), new {id = session.Id}, session);
+        return CreatedAtAction(nameof(GetSessionById), new 
+            {movieId = session.MovieId, cinemaId = session.CinemaId}, 
+            session
+        );
     }
 
     [HttpGet]
@@ -34,10 +37,13 @@ public class SessionController : ControllerBase
         return _mapper.Map<List<DetailingSessionDto>>(_context.Sessions.Skip(skip).Take(take));
     }
 
-    [HttpGet("{id}")]
-    public IActionResult GetSessionById(int id)
+    [HttpGet("{movieId}/{cinemaId}")]
+    public IActionResult GetSessionById(int movieId, int cinemaId)
     {
-        Session? session = _context.Sessions.FirstOrDefault(session => session.Id == id);
+        Session? session = _context.Sessions.FirstOrDefault(
+            session => session.MovieId == movieId && 
+            session.CinemaId == cinemaId
+        );
         if(session == null) return NotFound();
         DetailingSessionDto sessionDto = _mapper.Map<DetailingSessionDto>(session);
         return Ok(sessionDto);
